@@ -39,20 +39,16 @@ api.on 'message', (message) ->
     for r in $requests
       request = r if r.chat_id == chat_id
 
-    console.log 'vou ler o request'
     unless request
-      console.log 'to no inicio'
       methods.sendMessage chat_id, $initial_question.text, JSON.stringify($initial_question.markup)
 
-    console.log 'ver se tá OK...'
     if message.text.downcase == "cancelar"
-      console.log 'tá OK naooo...'
       methods.remove_request request
       request = null
 
     if request
       if request.current_question_num == request.questions.length
-        methods.sendMessage chat_id, request.success_message, request.markup
+        methods.sendMessage chat_id, request.success_message + " Para me chamar novamente é só digitar 'Oi' que eu volto ;). Xau! :*", request.markup
         methods.remove_request request
         return
 
