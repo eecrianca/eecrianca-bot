@@ -45,20 +45,19 @@ api.on 'message', (message) ->
     if message.text.downcase == "cancelar"
       methods.remove_request request
       request = null
+      return
 
     if request
       if request.current_question_num == request.questions.length
-        methods.sendMessage chat_id, request.success_message + " Para me chamar novamente é só digitar 'Oi' que eu volto ;). Xau! :*", request.markup
+        methods.sendMessage chat_id, request.success_message + "\n\nPara me chamar novamente basta mandar um Oi que eu volto. ;) \n\nXau! :*", []
         methods.remove_request request
         return
 
-      console.log 'já fiz uma solicitacao'
       current_question = request.questions[request.current_question_num]
       current_question.answer = message.text
 
       if current_question.answer
-        console.log 'respondi e vou para a proxima pergunta'
-        methods.sendMessage chat_id, current_question.text, request.markup
+        methods.sendMessage chat_id, current_question.text, []
         request.current_question_num += 1
         current_question = request.questions[request.current_question_num]
 
@@ -67,7 +66,8 @@ api.on 'inline.callback.query', (msg) ->
   data = msg.data
   for q in $questions
     if q.id == data
-      methods.sendMessage msg.from.id, q.text + " Digite OK para confirmar ou CANCELAR para voltar ao inicio.", q.markup
+      
+      methods.sendMessage msg.from.id, q.text + " Digite OK para confirmar ou CANCELAR para voltar ao inicio.", []
       r = {
         current_question_num: 0
         chat_id: msg.from.id
@@ -115,6 +115,7 @@ $questions.push  {
   questions: [{ text: "Informe seu nome completo: ", answer: null },
               { text: "Descreva sua solicitação... ", answer: null }]
 }
+
 
 $questions.push {
   id: 'secretary'
