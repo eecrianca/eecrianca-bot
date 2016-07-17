@@ -66,7 +66,7 @@ api.on 'inline.callback.query', (msg) ->
   data = msg.data
   for q in $questions
     if q.id == data
-      
+
       methods.sendMessage msg.from.id, q.text + " Digite OK para confirmar ou CANCELAR para voltar ao inicio.", []
       r = {
         current_question_num: 0
@@ -91,6 +91,7 @@ methods =
       console.log err
   ,
   remove_request: (request) ->
+    $requests.findIndex(x => x.chat_id == request.chat_id)
     index = $requests.indexOf request
     $requests.splice index, 1 if index isnt -1
 
