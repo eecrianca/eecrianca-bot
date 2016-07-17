@@ -1,0 +1,55 @@
+var token = '220902047:AAEvcj51oZuHAMfHlJ_2qp8HGLzVZLT04M4';
+
+var Telegram = require('telegram-bot-api');
+
+var api = new Telegram({ token: token, updates: { enabled: true } });
+
+
+console.log('bot server started...');
+
+//Create your inline keyboard markup
+var inlineKeyboard = {
+    inline_keyboard: [
+        [
+            {
+                text: 'Row 1 Cell 1',
+                callback_data: '1-1'
+            },
+            {
+                text: 'Row 1 Cell 2',
+                callback_data: '1-2'
+            }
+        ],
+        [
+            {
+                text: 'Row 2',
+                callback_data: '2'
+            }
+        ]
+    ]
+  };
+
+api.on('message', function(message)
+{
+  if (message){
+  	var chat_id = message.chat.id;
+
+    api.sendMessage({ chat_id: chat_id, text: 'Click on buttons below',
+      reply_markup: JSON.stringify(inlineKeyboard)
+    }).then(function(message) {
+      console.log(message);
+    }).catch(function(err) {
+      console.log(err);
+    });
+  }
+});
+
+//When user click on button, 'CallbackQuery' Object will be catch by code below
+api.on('inline.callback.query', function(msg) {
+
+    var data = msg.data; //Value from 'callback_data' field of clicked button
+
+    console.log(data);
+
+    //do stuff
+});

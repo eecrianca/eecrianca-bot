@@ -17,7 +17,8 @@
   "author": "Gustavo Porpino",
   "license": "ISC",
   "dependencies": {
+    "coffee-script": "^1.10.0",
     "express": "^4.14.0",
-    "node-telegram-bot-api": "^0.23.3"
+    "telegram-bot-api": "^1.2.0"
   }
 }
