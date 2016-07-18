@@ -1,3 +1,3 @@
-require('coffee-script/register');
 require('./bot');
-require('./web');
+require('./server');
+require('./app/request');
