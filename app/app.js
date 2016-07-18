@@ -28,9 +28,12 @@ let App = class App {
     if(process.env.NODE_ENV === 'production') {
       this.api = new Telegram({ token: token });
       this.api.setWebhook(process.env.HEROKU_URL + token);
+
+      console.log('Init by webhook');
     }
     else {
       this.api = new Telegram({ token: token, updates: { enabled: true } });
+      console.log('Init by pulling');
     }
 
     console.log('Telegram bot server started...');
