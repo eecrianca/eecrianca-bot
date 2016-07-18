@@ -26,6 +26,6 @@ app.on_message((message, request) => {
 
 app.on_callback((message) => {
   let type = message.data;
-  
+
   app.new_request(message.from.id, type);
 });
