@@ -17,6 +17,7 @@
 
 let express = require('express');
 let packageInfo = require('./package.json');
+var bodyParser = require('body-parser');
 let Bot = require('./app/app');
 
 let app = express();
@@ -33,7 +34,7 @@ var server = app.listen(process.env.PORT || 3000, function () {
   console.log('Web server started at http://%s:%s', host, port);
 });
 
-var bodyParser = require('body-parser');
+
 app.use(bodyParser.json());
 
 app.post('/' + process.env.TOKEN, function (req, res) {
