@@ -8,9 +8,14 @@ const OPEN = "1",
 CLOSED = "2"
 
 let Request = class Request {
-  constructor (attrs = {}, questions, success_message, name) {
+  constructor (chat_id, questions, success_message, name) {
+
+    if (!chat_id){
+      throw "You must to send chat_id";
+    }
+
     this._current_question_num = 0
-    this.chat_id = attrs.chat_id;
+    this.chat_id = chat_id;
     this.success_message = success_message;
     this.name = name;
     this.questions = questions;
