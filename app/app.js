@@ -27,7 +27,7 @@ let App = class App {
     this.requests = new Array();
     if(process.env.NODE_ENV === 'production') {
       this.api = new Telegram({ token: token });
-      this.api.setWebHook(process.env.HEROKU_URL + token);
+      this.api.setWebhook(process.env.HEROKU_URL + token);
     }
     else {
       this.api = new Telegram({ token: token, updates: { enabled: true } });
