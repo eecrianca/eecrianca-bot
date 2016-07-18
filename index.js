@@ -1,3 +1,3 @@
-require('dotenv').config();
+require('dotenv').load();
 //require('./bot');
 require('./server');
