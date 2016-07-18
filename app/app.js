@@ -25,14 +25,15 @@ let App = class App {
     }
 
     this.requests = new Array();
-    if(process.env.NODE_ENV === 'production') {
-      this.api = new Telegram({ token: token });
-      this.api.setWebhook(process.env.HEROKU_URL + token);
-    }
-    else {
-      this.api = new Telegram({ token: token, updates: { enabled: true } });
-    }
-    console.log('telegram bot server started...');
+    // if(process.env.NODE_ENV === 'production') {
+    //   this.api = new Telegram({ token: token });
+    //   this.api.setWebhook(process.env.HEROKU_URL + token);
+    // }
+    // else {
+    //this.api = new Telegram({ token: token, updates: { enabled: true } });
+    // }
+    this.api = new Telegram({ token: token, updates: { enabled: true } });
+    console.log('Telegram bot server started...');
   }
 
   send_message(chat_id, text, markup = [], then_func) {
