@@ -87,7 +87,7 @@ let App = class App {
   }
 
   on_message(message_func){
-    app = (this);
+    let app = (this);
     let new_func = function(message){
       if (!message){
         return

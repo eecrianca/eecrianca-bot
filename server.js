@@ -36,7 +36,7 @@ var server = app.listen(process.env.PORT || 3000, function () {
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-app.post('/' + token, function (req, res) {
+app.post('/' + process.env.TOKEN, function (req, res) {
   bot.process_update(req.body);
   res.sendStatus(200);
 });
