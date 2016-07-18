@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 
 app.post('/' + process.env.TOKEN, function (req, res) {
   if (req.body){
-    console.log('Webhook post ' + req.body.text);
+    console.log('Webhook post ' + req.body.message.text);
   }
   bot.process_update(req.body);
   res.sendStatus(200);
