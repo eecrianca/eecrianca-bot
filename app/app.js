@@ -92,7 +92,7 @@ let App = class App {
       }
 
       //se o usuário digitar cancelar
-      if (message.text.downcase == "cancelar") {
+      if (message.text.downcase === "cancelar") {
         app.remove_request(request);
         request = null;
       }
